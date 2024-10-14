@@ -42,7 +42,7 @@ export default function App() {
                 {clientSecret && (
                     <Elements options={{clientSecret, appearance, loader}} stripe={stripePromise}>
                         <Routes>
-                            <Route path="/client" element={<CheckoutForm dpmCheckerLink={dpmCheckerLink}/>}/>
+                            <Route path="/" element={<CheckoutForm dpmCheckerLink={dpmCheckerLink}/>}/>
                             <Route path="/complete" element={<CompletePage pid={pid}/>}/>
                         </Routes>
                     </Elements>

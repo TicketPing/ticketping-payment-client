@@ -44,7 +44,9 @@ form {
 }
 
 .custom-input {
-  width: 100%;
+  display: flex;
+  justify-content: center;
+  width: 90%;
   height: 30px;
   padding: 5px;
   font-size: 15px; /* 글자 크기도 키울 수 있습니다 */

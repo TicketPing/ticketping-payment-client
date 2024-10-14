@@ -21,6 +21,13 @@ form {
   margin-bottom: auto;
 }
 
+.custom-input {
+  width: 400px;
+  height: 40px;
+  padding: 10px;
+  font-size: 13px; /* 글자 크기도 키울 수 있습니다 */
+}
+
 
 #payment-message {
   color: rgb(105, 115, 134);

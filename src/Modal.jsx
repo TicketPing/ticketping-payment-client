@@ -28,7 +28,9 @@ export default function Modal({modal}) {
                     // faec94ca-8583-4380-b0b5-6c6458abb220
                     value={order}
                     onChange={(e) => setOrder(e.target.value)}
+                    className="custom-input"
                 />
+                <br></br>
                 <button onClick={handleModalSubmit}>확인</button>
             </div>
         </div>

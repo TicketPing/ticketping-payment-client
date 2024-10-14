@@ -26,7 +26,7 @@ export default function CheckoutForm({dpmCheckerLink}) {
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: `https://ticketping-payment-client-ryehwas-projects.vercel.app/complete`,
+        return_url: `${window.location.origin}/complete`,
       },
     });
     // This point will only be reached if there is an immediate error when

@@ -20,7 +20,7 @@ export default function CheckoutForm({dpmCheckerLink, orderId}) {
   const verifyOrder = async () => {
     try {
       const response = await axios.post
-      (`http://http://3.36.73.221:10020/api/v1/payments/verify-ttl/${orderId}`
+      (`http://3.36.73.221:10020/api/v1/payments/verify-ttl/${orderId}`
       //(`http://localhost:8080/api/v1/payments/verify-ttl/${orderId}`
       //     , {
       //   method: "POST",

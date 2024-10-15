@@ -15,7 +15,7 @@ import {useParams} from 'react-router-dom';
 const stripePromise = loadStripe("pk_test_51Q801tRpxgEVE539pBARC3D84A8MPZskWP4cyVuXZZOWGDVFmD2YF7pfZArK7jYymrTSZ4aGE2hlxKe0LLUUaHrI00NC71Qgaz");
 
 export default function App() {
-
+    const [orderId, setOrderId] = useState("");
     const [clientSecret, setClientSecret] = useState("");
     const [dpmCheckerLink, setDpmCheckerLink] = useState("");
     const [isModalOpen, setIsModalOpen] = useState(true);
@@ -38,11 +38,12 @@ export default function App() {
     return (
         <Router>
             <div className="App">
-                {isModalOpen && <Modal modal={{setIsModalOpen, setClientSecret, setDpmCheckerLink}} /> }
+                {isModalOpen && <Modal modal={{setIsModalOpen, setClientSecret, setDpmCheckerLink}}
+                setOrderId={setOrderId}/> }
                 {clientSecret && (
                     <Elements options={{clientSecret, appearance, loader}} stripe={stripePromise}>
                         <Routes>
-                            <Route path="/" element={<CheckoutForm dpmCheckerLink={dpmCheckerLink}/>}/>
+                            <Route path="/" element={<CheckoutForm dpmCheckerLink={dpmCheckerLink} orderId={orderId} />}/>
                             <Route path="/complete" element={<CompletePage pid={pid}/>}/>
                         </Routes>
                     </Elements>

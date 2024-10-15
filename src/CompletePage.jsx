@@ -47,7 +47,7 @@ const STATUS_CONTENT_MAP = {
 export default function CompletePage({pid}) {
   const stripe = useStripe();
 
-  const [status, setStatus] = useState("processing");
+  const [status, setStatus] = useState("default");
   const [intentId, setIntentId] = useState(null);
 
   useEffect(() => {

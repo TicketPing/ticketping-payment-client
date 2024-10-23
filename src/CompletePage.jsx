@@ -79,9 +79,8 @@ export default function CompletePage({pid}) {
       }
       const response = await axios.put(`https://1741-122-203-225-229.ngrok-free.app/api/v1/payments/${intentId}?performanceId=${performanceId}`);
       console.log('Response:', response.data);
-      // Todo : 안지워짐
       Remove(performanceId);
-      console.log("performanceId가 지워졌나? : " + performanceId);
+      //Todo : 결제 완료 후 처음 화면으로 돌아가기
       navigate("/", { replace: true });
     } catch (error) {
       console.error('Error during confirmation:', error);

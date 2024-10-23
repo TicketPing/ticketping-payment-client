@@ -11,9 +11,15 @@ export default function Modal({modal, setOrderId}) {
             return; // orderId가 없으면 요청을 보내지 않음
         }
 
-        fetch(`http://localhost:8080/api/v1/payments/${orderId}`, {
+        //fetch(`http://3.36.73.221:10020/api/v1/payments/${orderId}`, {
+        //fetch(`http://localhost:8080/api/v1/payments/${orderId}`, {
+        fetch(`https://1741-122-203-225-229.ngrok-free.app/api/v1/payments/${orderId}`, {
             method: "POST",
-            headers: {"Content-Type": "application/json"},
+            headers: {
+                //"Access-Control-Allow-Headers" : "Content-Type",
+                "Content-Type": "application/json",
+                //"Access-Control-Allow-Methods": "OPTIONS,POST"
+            },
             //body: JSON.stringify(),
         })
             .then((res) => res.json())

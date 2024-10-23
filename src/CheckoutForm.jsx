@@ -16,18 +16,29 @@ export default function CheckoutForm({dpmCheckerLink, orderId}) {
 
   const navigate = useNavigate(); // useNavigate 훅 사용
 
+  const config = {
+    headers: {
+      "Access-Control-Allow-Headers" : "Content-Type",
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Methods": "OPTIONS,POST" // 필요한 경우 인증 토큰
+    }
+  };
+
   //서버로 주문 검증 요청을 보내는 함수
   const verifyOrder = async () => {
     try {
       const response = await axios.post
-      (`http://3.36.73.221:10020/api/v1/payments/verify-ttl/${orderId}`
+      //(`http://3.36.73.221:10020/api/v1/payments/verify-ttl/${orderId}`, config
       //(`http://localhost:8080/api/v1/payments/verify-ttl/${orderId}`
-      //     , {
-      //   method: "POST",
-      //   headers: {
-      //     "Content-Type": "application/json"
-      //   }
-      // }
+        (`https://1741-122-203-225-229.ngrok-free.app/api/v1/payments/verify-ttl/${orderId}`
+      //      , {
+      // //   method: "POST",
+      //  headers: {
+      //    "Access-Control-Allow-Headers" : "Content-Type",
+      //    "Content-Type": "application/json",
+      //    "Access-Control-Allow-Methods": "OPTIONS,POST"
+      //    }
+       //}
       )
       console.log(response.status);
       return true;

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"; // useNavigate 임포트
 import axios from "axios";
 import {
@@ -12,13 +12,7 @@ export default function CheckoutForm({dpmCheckerLink, performanceId, orderId}) {
   const [message, setMessage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate(); // useNavigate 훅 사용
-  const config = {
-    headers: {
-      "Access-Control-Allow-Headers" : "Content-Type",
-      "Content-Type": "application/json",
-      "Access-Control-Allow-Methods": "OPTIONS,POST" // 필요한 경우 인증 토큰
-    }
-  };
+
   //서버로 주문 검증 요청을 보내는 함수
   const verifyOrder = async () => {
     try {
@@ -27,6 +21,7 @@ export default function CheckoutForm({dpmCheckerLink, performanceId, orderId}) {
           //(`http://3.36.73.221:10020/api/v1/payments/verify-ttl/${orderId}`, config
           //(`http://localhost:8080/api/v1/payments/verify-ttl/${orderId}`
           (`https://1741-122-203-225-229.ngrok-free.app/api/v1/payments/verify-ttl/${orderId}?performanceId=${performanceId}` )
+
       console.log(response.status);
       return true;
     } catch (error) {

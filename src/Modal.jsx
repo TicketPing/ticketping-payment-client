@@ -1,6 +1,9 @@
-import {useState} from "react";
+import {useContext, useState} from "react";
+import PerformanceContext from "./PerformanceContext";
+
 export default function Modal({modal, setPerformanceId, setOrderId}) {
     const {setIsModalOpen, setClientSecret, setDpmCheckerLink} = modal;
+    const { SavePerformanceId } = useContext(PerformanceContext);
     const [performanceId, setPerformance] = useState("")
     const [orderId, setOrder] = useState("")
     const handleModalSubmit = () => {
@@ -28,7 +31,11 @@ export default function Modal({modal, setPerformanceId, setOrderId}) {
                 setDpmCheckerLink(data.data.dpmCheckerLink);
                 setPerformanceId(performanceId);
                 setOrderId(orderId);
-            });
+            })
+            .then(() => {
+                SavePerformanceId(performanceId)
+                }
+            );
     };
     return <>
         <div className="modal">

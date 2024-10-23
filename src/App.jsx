@@ -6,7 +6,7 @@ import CompletePage from "./CompletePage";
 import Modal from "./Modal";
 import "./App.css";
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
-import {useParams} from 'react-router-dom';
+import PerformanceProvider from "./PerformanceProvider";
 // Make sure to call loadStripe outside of a component’s render to avoid
 // recreating the Stripe object on every render.
 // This is a public sample test API key.
@@ -26,6 +26,7 @@ export default function App() {
     // Enable the skeleton loader UI for optimal loading.
     const loader = 'auto';
     const path = window.location.pathname;
+
     useEffect(() => {
         if (path === '/complete') {
             const search = window.location.search
@@ -35,6 +36,7 @@ export default function App() {
         }
     }, []);
     return (
+        <PerformanceProvider>
         <Router>
             <div className="App">
                 {isModalOpen && <Modal modal={{setIsModalOpen, setClientSecret, setDpmCheckerLink}} setPerformanceId={setPerformanceId} setOrderId={setOrderId}/> }
@@ -48,5 +50,6 @@ export default function App() {
                 )}
             </div>
         </Router>
+        </PerformanceProvider>
     )
 }

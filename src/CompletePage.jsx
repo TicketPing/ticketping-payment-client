@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {
   useStripe,
 } from "@stripe/react-stripe-js";
 import "./App.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import PerformanceContext from "./PerformanceContext";
+
 const SuccessIcon =
     <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path fillRule="evenodd" clipRule="evenodd" d="M15.4695 0.232963C15.8241 0.561287 15.8454 1.1149 15.5171 1.46949L6.14206 11.5945C5.97228 11.7778 5.73221 11.8799 5.48237 11.8748C5.23253 11.8698 4.99677 11.7582 4.83452 11.5681L0.459523 6.44311C0.145767 6.07557 0.18937 5.52327 0.556912 5.20951C0.924454 4.89575 1.47676 4.93936 1.79051 5.3069L5.52658 9.68343L14.233 0.280522C14.5613 -0.0740672 15.1149 -0.0953599 15.4695 0.232963Z" fill="white"/>
@@ -40,11 +43,14 @@ const STATUS_CONTENT_MAP = {
     icon: ErrorIcon,
   }
 };
-export default function CompletePage({pid, performanceId}) {
-  console.log("completePage 잘 들어가나 : " + performanceId);
+export default function CompletePage({pid}) {
   const stripe = useStripe();
+  const navigate = useNavigate();
   const [status, setStatus] = useState("default");
   const [intentId, setIntentId] = useState(null);
+  const { performanceId, Remove } = useContext(PerformanceContext);
+  console.log("completePage에 performanceId 잘 들어가나 : " + performanceId);
+
   useEffect(() => {
     if (!stripe) {
       return;
@@ -73,8 +79,13 @@ export default function CompletePage({pid, performanceId}) {
       }
       const response = await axios.put(`https://1741-122-203-225-229.ngrok-free.app/api/v1/payments/${intentId}?performanceId=${performanceId}`);
       console.log('Response:', response.data);
+      // Todo : 안지워짐
+      Remove(performanceId);
+      console.log("performanceId가 지워졌나? : " + performanceId);
+      navigate("/", { replace: true });
     } catch (error) {
       console.error('Error during confirmation:', error);
+      alert('Error during confirmation:'+ error);
     }
   };
   return (

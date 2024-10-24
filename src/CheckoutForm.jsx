@@ -20,7 +20,7 @@ export default function CheckoutForm({dpmCheckerLink, performanceId, orderId}) {
       const response = await axios.post
           //(`http://3.36.73.221:10020/api/v1/payments/verify-ttl/${orderId}`, config
           //(`http://localhost:8080/api/v1/payments/verify-ttl/${orderId}`
-          (`https://1741-122-203-225-229.ngrok-free.app/api/v1/payments/verify-ttl/${orderId}?performanceId=${performanceId}` )
+          (`http://3.35.217.241:10020/api/v1/payments/verify-ttl/${orderId}?performanceId=${performanceId}` )
 
       console.log(response.status);
       return true;

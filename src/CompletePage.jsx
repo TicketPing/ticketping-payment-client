@@ -77,7 +77,7 @@ export default function CompletePage({pid}) {
       if (!performanceId || !intentId) {
         throw new Error("performanceId 또는 intentId가 존재하지 않습니다.");
       }
-      const response = await axios.put(`https://1741-122-203-225-229.ngrok-free.app/api/v1/payments/${intentId}?performanceId=${performanceId}`);
+      const response = await axios.put(`http://3.35.217.241:10020/api/v1/payments/${intentId}?performanceId=${performanceId}`);
       console.log('Response:', response.data);
       Remove(performanceId);
       //Todo : 결제 완료 후 처음 화면으로 돌아가기

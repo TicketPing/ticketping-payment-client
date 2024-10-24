@@ -12,8 +12,8 @@
     "react-scripts": "^5.0.1",
     "recoil": "^0.7.7"
   },
-  "homepage": "http://localhost:3000",
-  "proxy": "https://1741-122-203-225-229.ngrok-free.app",
+  "homepage": "http://http://ticketping-payment.s3-website.ap-northeast-2.amazonaws.com",
+  "proxy": "http://3.35.217.241:10020",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

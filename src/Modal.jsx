@@ -18,7 +18,7 @@ export default function Modal({modal, setPerformanceId, setOrderId}) {
         }
         //fetch(`http://3.36.73.221:10020/api/v1/payments/${orderId}`, {
         //fetch(`http://localhost:8080/api/v1/payments/${orderId}`, {
-        fetch(`https://1741-122-203-225-229.ngrok-free.app/api/v1/payments/${orderId}?performanceId=${encodeURIComponent(performanceId)}`, {
+        fetch(`http://3.35.217.241:10020/api/v1/payments/${orderId}?performanceId=${encodeURIComponent(performanceId)}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

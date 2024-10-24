@@ -48,8 +48,9 @@ export default function CompletePage({pid}) {
   const navigate = useNavigate();
   const [status, setStatus] = useState("default");
   const [intentId, setIntentId] = useState(null);
-  const { performanceId, Remove } = useContext(PerformanceContext);
+  const { performanceId, Remove, token, RemoveToken } = useContext(PerformanceContext);
   console.log("completePage에 performanceId 잘 들어가나 : " + performanceId);
+  console.log("token : " + token);
 
   useEffect(() => {
     if (!stripe) {
@@ -77,9 +78,21 @@ export default function CompletePage({pid}) {
       if (!performanceId || !intentId) {
         throw new Error("performanceId 또는 intentId가 존재하지 않습니다.");
       }
-      const response = await axios.put(`http://3.35.217.241:10020/api/v1/payments/${intentId}?performanceId=${performanceId}`);
-      console.log('Response:', response.data);
+      const response = await fetch(`http://3.35.217.241:10024/api/v1/payments/${intentId}?performanceId=${performanceId}`, {
+        method: "PUT",
+        //mode: 'no-cors',
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer " + token
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error("서버 응답이 올바르지 않습니다.");
+      }
+      console.log('Response:', await response.json());
       Remove(performanceId);
+      RemoveToken(token);
       //Todo : 결제 완료 후 처음 화면으로 돌아가기
       navigate("/", { replace: true });
     } catch (error) {

@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, {useContext, useState} from "react";
 import { useNavigate } from "react-router-dom"; // useNavigate 임포트
-import axios from "axios";
+import PerformanceContext from "./PerformanceContext";
 import {
   PaymentElement,
   useStripe,
@@ -11,17 +11,24 @@ export default function CheckoutForm({dpmCheckerLink, performanceId, orderId}) {
   const elements = useElements();
   const [message, setMessage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const { token } = useContext(PerformanceContext);
   const navigate = useNavigate(); // useNavigate 훅 사용
 
   //서버로 주문 검증 요청을 보내는 함수
   const verifyOrder = async () => {
     try {
       console.log("검증 요청 " + performanceId)
-      const response = await axios.post
-          //(`http://3.36.73.221:10020/api/v1/payments/verify-ttl/${orderId}`, config
-          //(`http://localhost:8080/api/v1/payments/verify-ttl/${orderId}`
-          (`http://3.35.217.241:10020/api/v1/payments/verify-ttl/${orderId}?performanceId=${performanceId}` )
-
+      const response = await fetch(`http://3.35.217.241:10024/api/v1/payments/verify-ttl/${orderId}?performanceId=${performanceId}`, {
+        method: "POST",
+        //mode: 'no-cors',
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization" : "Bearer " + token
+        },
+      });
+      if (!response.ok) {
+        throw new Error("서버 응답이 올바르지 않습니다.");
+      }
       console.log(response.status);
       return true;
     } catch (error) {

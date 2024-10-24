@@ -3,10 +3,22 @@ import PerformanceContext from "./PerformanceContext";
 
 const PerformanceProvider = ({ children}) => {
     const [performanceId, setPerformanceId] = useState(null);
+    const [token, setToken] = useState(null);
 
     useEffect(() => {
        setPerformanceId(localStorage.getItem("performanceId"))
+        setToken(localStorage.getItem("token"))
     }, []);
+
+    const SaveToken = (token) => {
+        setToken(token);
+        localStorage.setItem("token", token);
+    }
+
+    const RemoveToken = (token) => {
+        setToken(null);
+        localStorage.removeItem("token");
+    }
 
     const SavePerformanceId = (performId) => {
         setPerformanceId(performId);
@@ -26,7 +38,11 @@ const PerformanceProvider = ({ children}) => {
                 performanceId,
                 SavePerformanceId,
                 Remove,
-                setPerformanceId
+                setPerformanceId,
+                token,
+                SaveToken,
+                RemoveToken,
+                setToken
             }}
             >
             {children}

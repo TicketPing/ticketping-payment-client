@@ -12,8 +12,8 @@
     "react-scripts": "^5.0.1",
     "recoil": "^0.7.7"
   },
-  "homepage": "http://http://ticketping-payment.s3-website.ap-northeast-2.amazonaws.com",
-  "proxy": "http://3.35.217.241:10020",
+  "homepage": "http://ticketping-payment.s3-website.ap-northeast-2.amazonaws.com",
+  "proxy": "http://3.35.217.241:10024",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
